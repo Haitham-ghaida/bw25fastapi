@@ -1,0 +1,8 @@
+bw2calc==2.0.dev16
+bw2data==4.0.dev33
+bw2io==0.9.dev26
+ecoinvent_interface==2.4.1
+fastapi==0.110.1
+pydantic==2.6.4
+Requests==2.31.0
+uvicorn==0.29.0
