@@ -48,7 +48,7 @@ After building the image, you can run bw25fastapi inside a Docker container.
 ```bash
 docker run -d --name bw25fastapi_container -p 8000:8000 yourusername/bw25fastapi:latest
 ```
-you can change the local port to whatever you want incase you are using it for something else for example `5000:8000` if you want port 5000
+You can change the local port to whatever you want in case you are using it for something else for example `5000:8000` if you want port 5000
 
 ### Access the Application
 
@@ -75,4 +75,4 @@ Contributions to bw25fastapi are welcome! Please feel free to submit pull reques
 - [ ] Other?
 
 # License
-This project is licensed under BSD-3-Clause license - see the LICENSE file for details.
+This project is licensed under BSD-3-Clause license - see the [LICENSE](LICENSE) file for details.
