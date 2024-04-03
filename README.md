@@ -72,7 +72,8 @@ Contributions to bw25fastapi are welcome! Please feel free to submit pull reques
 # todo
 - [ ] Add methods to create activities and add exchanges
 - [ ] Create methods to add/write databases
-- [ ] Other?
+- [ ] also general functionality, delete/edit db, project, activity, exchange.
+- [ ] ideas?
 
 # License
 This project is licensed under BSD-3-Clause license - see the [LICENSE](LICENSE) file for details.
