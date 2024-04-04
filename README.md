@@ -207,5 +207,7 @@ Contributions to bw25fastapi are welcome! Please feel free to submit pull reques
 - [ ] also general functionality, delete/edit db, project, activity, exchange.
 - [ ] ideas?
 
+Feel free to reach out at [haitham.ghaida@uhasselt.be](mailto:haitham.ghaida@uhasselt.be).
+
 # License
 This project is licensed under BSD-3-Clause license - see the [LICENSE](LICENSE) file for details.
