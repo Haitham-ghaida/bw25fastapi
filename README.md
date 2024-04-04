@@ -202,7 +202,8 @@ or you can simply provide a list of impact categories that you want:
 Contributions to bw25fastapi are welcome! Please feel free to submit pull requests or create issues for bugs, questions, and feature requests.
 
 # todo
-- [ ] Add methods to create activities and add exchanges
+- [ ] Add response from fastapi
+- [ ] Add caching
 - [ ] Create methods to add/write databases
 - [ ] also general functionality, delete/edit db, project, activity, exchange.
 - [ ] ideas?
