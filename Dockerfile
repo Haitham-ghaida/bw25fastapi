@@ -1,4 +1,4 @@
-# Use an official Python runtime as a parent image
+# Use an official Python runtime
 FROM python:3.11-slim
 
 # Set the working directory in the container
@@ -9,7 +9,7 @@ RUN mkdir -p /.local/share/Brightway3
 
 # Optionally, ensure the directory is writable by the non-root user
 # This step depends on whether you run the container as a non-root user
-# RUN chmod -R 777 /.local/share/Brightway3
+# RUN chmod -R 777 /root/.local/share/Brightway3
 
 # Copy the current directory contents into the container at /usr/src/app
 COPY . .
@@ -17,7 +17,7 @@ COPY . .
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Make port 8000 available to the world outside this container
+# Make port 8000 available
 EXPOSE 8000
 
 # Define environment variable
