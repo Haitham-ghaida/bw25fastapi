@@ -4,6 +4,13 @@ FROM python:3.11-slim
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
+# Create the Brightway3 directory in the container to ensure it exists
+RUN mkdir -p /.local/share/Brightway3
+
+# Optionally, ensure the directory is writable by the non-root user
+# This step depends on whether you run the container as a non-root user
+# RUN chmod -R 777 /.local/share/Brightway3
+
 # Copy the current directory contents into the container at /usr/src/app
 COPY . .
 

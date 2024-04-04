@@ -131,8 +131,6 @@ async def import_ecoinvent(project_name: str, import_details: EcoinventImportDet
         curl -X POST "http://localhost:8000/api/v1/project/my_project/import_ecoinvent/" -H "Content-Type: application/json" -d '{"version": "3.7.1", "system_model": "consequential"}'
     """
     bd.projects.set_current(project_name)
-    # Simulated logic for checking version and system model
-    # Let's assume `EcoinventRelease` and `Settings` are defined elsewhere in your application
     my_settings = Settings()
     release = EcoinventRelease(my_settings)
     if import_details.version not in release.list_versions():
@@ -142,14 +140,11 @@ async def import_ecoinvent(project_name: str, import_details: EcoinventImportDet
     ):
         raise HTTPException(status_code=404, detail="System model not found.")
 
-    # Simulated import logic
     bi.import_ecoinvent_release(
         version=import_details.version, system_model=import_details.system_model
     )
 
-    # Placeholder response
     return {
-        "message": "Ecoinvent credentials set successfully.",
         "project": project_name,
         "version": import_details.version,
         "system_model": import_details.system_model,
@@ -452,9 +447,7 @@ def staticLCA(inputs: LCAInput) -> LCAResult:
 
     # Create container for results
     results = {}
-    # Adding a progress bar for iterating through demands
     for demand in demands:
-        # Updating the progress bar description
         act = bd.get_activity(list(demand.keys())[0])
         results[str(act)] = {method: None for method in methods}
 
@@ -500,14 +493,14 @@ async def run_lca(project_name: str, database_name: str, body: LCARequest):
             "lcia_method": "method1"
         }' http://localhost:8000/run_lca?project_name=my_project&database_name=my_database
         or
-        curl -X POST "http://localhost:8000/api/v1/projects/my_project/database/ecoinvent-3.9-cutoff/lca" \   8.9s  Wed 17:27
+        curl -X POST "http://localhost:8000/api/v1/projects/my_project/database/ecoinvent-3.9-cutoff/lca" \   
          -H "Content-Type: application/json" \
          -d '{
          "demands": [{"67607aa7b3530fe7fbd3a6de8ae58527": 2.0}, {"cf58e5107752177423205ce5e78d16f4": 1}],
          "lcia_method": "EF v3.1 EN15804"
      }'
        or
-       curl -X POST "http://localhost:8000/api/v1/projects/my_project/database/ecoinvent-3.9-cutoff/lca" \  115ms  Wed 17:25
+       curl -X POST "http://localhost:8000/api/v1/projects/my_project/database/ecoinvent-3.9-cutoff/lca" \  
          -H "Content-Type: application/json" \
          -d '{
          "demands": [{"67607aa7b3530fe7fbd3a6de8ae58527": 2.0}, {"cf58e5107752177423205ce5e78d16f4": 1}],
@@ -558,8 +551,6 @@ async def run_lca(project_name: str, database_name: str, body: LCARequest):
         )
 
     # Perform the LCA calculations
-    results = staticLCA(
-        LCAInput(demands=demands, impact_categories=impact_categories)
-    )  # Assuming staticLCA can process this input
+    results = staticLCA(LCAInput(demands=demands, impact_categories=impact_categories))
 
     return results
