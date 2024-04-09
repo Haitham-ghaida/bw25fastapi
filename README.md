@@ -95,11 +95,7 @@ curl -X 'GET' \
 
 to create a project:
 ```bash
-curl -X 'POST' \
-  'http://localhost:8000/api/v1/project/' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{"project_name": "my_new_project"}'
+curl -X POST "http://localhost:8000/api/v1/project/?project_name=my_new_project"
 ```
 
 ## Ecoinvent import
