@@ -69,7 +69,7 @@ This command runs the application in a Docker container named bw25fastapi and ma
 
 if you would like the container to use the host's brightway directory then you need to run the container like this:
 ```bash
-docker run docker run -d --name bw25api -p 8000:8000 -v /path/to/your/brightway/dir:/root/.local/share/Brightway3 haithamthabet/bw25fastapi:latest
+docker run docker run -d --name bw25fastapi -p 8000:8000 -v /path/to/your/brightway/dir:/root/.local/share/Brightway3 haithamthabet/bw25fastapi:latest
 ```
 
 you can refer to the [brightway docs](https://docs.brightway.dev/en/latest/content/faq/data_management.html#where-is-my-data-saved) to find what is the directory for your system. it's different for mac, windows, linux.
