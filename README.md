@@ -37,7 +37,7 @@ Instead of running the application directly on your local machine, you can easil
 Just clone the git repo like the previous option, then cd into that dir
 run:
 ```bash
-docker build -t yourusername/bw25fastapi:latest .
+docker build -t bw25fastapi:latest .
 ```
 
 This command builds a Docker image named bw25fastapi tagged as latest.
@@ -46,7 +46,7 @@ This command builds a Docker image named bw25fastapi tagged as latest.
 
 After building the image, you can run bw25fastapi inside a Docker container.
 ```bash
-docker run -d --name bw25fastapi_container -p 8000:8000 yourusername/bw25fastapi:latest
+docker run -d -p 8000:8000 bw25fastapi:latest
 ```
 You can change the local port to whatever you want in case you are using it for something else for example `5000:8000` if you want port 5000
 
