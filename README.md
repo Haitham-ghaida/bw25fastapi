@@ -135,21 +135,21 @@ curl -X 'POST' \
 to see what databases are available in a project.
 
 ```bash
-curl -X GET "http://localhost:8000/api/v1/projects/{project_name}/database" \
+curl -X GET "http://localhost:8000/api/v1/project/{project_name}/database" \
      -H "accept: application/json"
 ```
 
 to search through the database
 
 ```bash
-curl -X GET "http://localhost:8000/api/v1/projects/{project_name}/database/{database_name}/activity/search?search_term={search_term}" \
+curl -X GET "http://localhost:8000/api/v1/project/{project_name}/database/{database_name}/activity/search?search_term={search_term}" \
      -H "accept: application/json"
 ```
 
 to see exchanges of an activity
 
 ```bash
-curl -X GET "http://localhost:8000/api/v1/projects/{project_name}/database/{database_name}/activity/{activity_code}/exchanges" \
+curl -X GET "http://localhost:8000/api/v1/project/{project_name}/database/{database_name}/activity/{activity_code}/exchanges" \
      -H "accept: application/json"
 ```
 
@@ -158,14 +158,14 @@ curl -X GET "http://localhost:8000/api/v1/projects/{project_name}/database/{data
 To see what LCIA methods are available:
 
 ```bash
-curl -X GET "http://localhost:8000/api/v1/projects/{project_name}/lcia_methods" \
+curl -X GET "http://localhost:8000/api/v1/project/{project_name}/lcia_methods" \
      -H "accept: application/json"
 ```
 
 to see impact categories of a method
 
 ```bash
-curl -X GET "http://localhost:8000/api/v1/projects/{project_name}/lcia_methods/{lcia_method}/impact_categories" \
+curl -X GET "http://localhost:8000/api/v1/project/{project_name}/lcia_methods/{lcia_method}/impact_categories" \
      -H "accept: application/json"
 ```
 
@@ -174,7 +174,7 @@ curl -X GET "http://localhost:8000/api/v1/projects/{project_name}/lcia_methods/{
 to run an LCA given a specfic lcia method
 
 ```bash
-curl -X POST "http://localhost:8000/api/v1/projects/{project_name}/database/{database_name}/lca" \
+curl -X POST "http://localhost:8000/api/v1/project/{project_name}/database/{database_name}/lca" \
      -H "Content-Type: application/json" \
      -d '{
          "demands": [{"{activity1_code}": 1.0}, {"{activity2_code}": 2.0}],
@@ -185,7 +185,7 @@ curl -X POST "http://localhost:8000/api/v1/projects/{project_name}/database/{dat
 or you can simply provide a list of impact categories that you want:
 
 ```bash
-       curl -X POST "http://localhost:8000/api/v1/projects/my_project/database/ecoinvent-3.9-cutoff/lca" \  
+       curl -X POST "http://localhost:8000/api/v1/project/my_project/database/ecoinvent-3.9-cutoff/lca" \  
          -H "Content-Type: application/json" \
          -d '{
          "demands": [{"67607aa7b3530fe7fbd3a6de8ae58527": 2.0}, {"cf58e5107752177423205ce5e78d16f4": 1}],
