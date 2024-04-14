@@ -10,12 +10,20 @@ from ecoinvent_interface import (
 )
 from models import Credentials, EcoinventImportDetails, LCARequest, LCAResult, LCAInput
 from utils import convert_results_format
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+# You would want to add this if you are making a front end
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],  # Adjust this to your frontend's URL
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
-@app.post("/api/v1/project/")
+@app.post("/api/v1/projects/")
 async def create_project(project_name: str):
     """
     Create a new project.
@@ -167,7 +175,7 @@ async def list_projects():
     return {"projects": clean_projects_list}
 
 
-@app.get("/api/v1/projects/{project_name}/database")
+@app.get("/api/v1/project/{project_name}/databases")
 async def list_project_databases(project_name: str):
     """
     Retrieve the list of databases for a given project.
@@ -192,7 +200,7 @@ async def list_project_databases(project_name: str):
         raise HTTPException(status_code=404, detail="Project not found.")
 
 
-@app.get("/api/v1/projects/{project_name}/database/{database_name}/activity/search")
+@app.get("/api/v1/project/{project_name}/database/{database_name}/activity/search")
 async def search_activities(project_name: str, database_name: str, search_term: str):
     """
     Search for activities in a specific project and database based on a given search term.
@@ -284,7 +292,7 @@ async def get_activity_by_code(
 
 
 @app.get(
-    "/api/v1/projects/{project_name}/database/{database_name}/activity/{activity_code}/exchanges"
+    "/api/v1/project/{project_name}/database/{database_name}/activity/{activity_code}/exchanges"
 )
 async def get_activity_exchanges(
     project_name: str, database_name: str, activity_code: str
@@ -329,7 +337,7 @@ async def get_activity_exchanges(
         raise HTTPException(status_code=404, detail="Activity not found.")
 
 
-@app.get("/api/v1/projects/{project_name}/lcia_methods")
+@app.get("/api/v1/project/{project_name}/lcia_methods")
 async def get_lcia_methods(project_name: str):
     """
     Retrieve the list of methods in a project.
@@ -355,7 +363,7 @@ async def get_lcia_methods(project_name: str):
     return {"methods": methods}
 
 
-@app.get("/api/v1/projects/{project_name}/lcia_methods/{lcia_method}/impact_categories")
+@app.get("/api/v1/project/{project_name}/lcia_methods/{lcia_method}/impact_categories")
 async def get_impact_categories(project_name: str, lcia_method: str):
     """
     Retrieve the list of impact categories for a given LCIA method.
@@ -371,7 +379,7 @@ async def get_impact_categories(project_name: str, lcia_method: str):
         HTTPException: If the project or LCIA method is not found.
 
     Examples:
-        curl "http://localhost:8000/api/version_number(v1)/projects/my_project/lcia_methods/my_lcia_method/impact_categories"
+        curl "http://localhost:8000/api/version_number(v1)/project/my_project/lcia_methods/my_lcia_method/impact_categories"
         for example:
         curl "http://localhost:8000/api/v1/project/Project_name/lcia_methods/EF%20v3.0/impact_categories"
             This gives me
@@ -461,7 +469,7 @@ def staticLCA(inputs: LCAInput) -> LCAResult:
     return convert_results_format(results)
 
 
-@app.post("/api/v1/projects/{project_name}/database/{database_name}/lca")
+@app.post("/api/v1/project/{project_name}/database/{database_name}/lca")
 async def run_lca(project_name: str, database_name: str, body: LCARequest):
     """
     Run life cycle assessment (LCA) calculations for a given project, database, and set of demands.
@@ -493,14 +501,14 @@ async def run_lca(project_name: str, database_name: str, body: LCARequest):
             "lcia_method": "method1"
         }' http://localhost:8000/run_lca?project_name=my_project&database_name=my_database
         or
-        curl -X POST "http://localhost:8000/api/v1/projects/my_project/database/ecoinvent-3.9-cutoff/lca" \   
+        curl -X POST "http://localhost:8000/api/v1/project/my_project/database/ecoinvent-3.9-cutoff/lca" \   
          -H "Content-Type: application/json" \
          -d '{
          "demands": [{"67607aa7b3530fe7fbd3a6de8ae58527": 2.0}, {"cf58e5107752177423205ce5e78d16f4": 1}],
          "lcia_method": "EF v3.1 EN15804"
      }'
        or
-       curl -X POST "http://localhost:8000/api/v1/projects/my_project/database/ecoinvent-3.9-cutoff/lca" \  
+       curl -X POST "http://localhost:8000/api/v1/project/my_project/database/ecoinvent-3.9-cutoff/lca" \  
          -H "Content-Type: application/json" \
          -d '{
          "demands": [{"67607aa7b3530fe7fbd3a6de8ae58527": 2.0}, {"cf58e5107752177423205ce5e78d16f4": 1}],
