@@ -1,9 +1,10 @@
 # bw25fastapi
 
 FastAPI application designed to facilitate life cycle assessment (LCA) calculations using the Brightway2 framework.
-    Project Management: Create and manage LCA projects.
-    Ecoinvent Integration: Set Ecoinvent credentials, import Ecoinvent releases, and list available release versions and system models.
-    LCA Calculations: Perform static LCA calculations by specifying demands and impact categories or LCIA methods.
+
+- Project Management: Create and manage LCA projects.
+- Ecoinvent Integration: Set Ecoinvent credentials, import Ecoinvent releases, and list available release versions and system models.
+- LCA Calculations: Perform static LCA calculations by specifying demands and impact categories or LCIA methods.
 
 # Installing
 
